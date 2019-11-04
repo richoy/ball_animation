@@ -141,11 +141,11 @@ class Evil extends Shape{
 
 var balls = [];
 
-while (balls.length < 5) {
+while (balls.length < 50) {
     var size = random(10,20);
     var ball = new Ball(
         random( 0 + size, width - size),
-        random( 0 + size, width - size),
+        random( 0 + size, height - size),
         random(-7,7),
         random(-7,7),
         'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
@@ -162,18 +162,6 @@ function loop() {
     ctx.fillStyle = 'rgba(0,0,0,0.25)';
     ctx.fillRect(0, 0, width, height);
 
-/*
-    for (let i = 0; i > balls.length; i++) {
-        if (balls[i].exists === true){
-            balls[i].draw();
-            balls[i].update();
-            balls[i].collisionDetect();
-        }
-
-
-    }
-*/
-
     balls.forEach(function(e) {
         if (e.exists === true){
             e.draw();
@@ -185,8 +173,12 @@ function loop() {
     evilBall.draw();
     evilBall.collisionDetect();
     evilBall.update();
+
+    counter = document.getElementById("info");;
+    counter.textContent = "Ball Counter: " + balls.length.toString();
+
     requestAnimationFrame(loop);
 
 }
 
-//loop();
+loop();
